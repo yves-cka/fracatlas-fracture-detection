@@ -1,6 +1,6 @@
 # Rapport — Détection de fractures osseuses (FracAtlas)
 
-**Projet IA02 — Classification non linéaire grâce à l'IA avancée (Partie 2)**
+**Projet IA02 — Classification non linéaire grâce à l'IA avancée**
 **Auteurs :** Yves CHEKOUA, Mohamed Mehdi TRABELSSI — UTT, SN2
 
 ## 1. Contexte et enjeu
@@ -78,7 +78,7 @@ Standardisation préalable des features (`StandardScaler`, indispensable pour le
 
 ### 5.3 CNN — Transfer Learning MobileNetV2 (sans augmentation)
 
-Même approche en deux phases que pour la Partie 1 (CIFAR-10) :
+Approche en deux phases (méthode *Freeze* puis *Fine-tuning*) :
 
 - **Phase 1 (Freeze)** : base MobileNetV2 pré-entraînée gelée, seule la tête de classification binaire (`GlobalAveragePooling2D → Dense(64) → Dropout(0,4) → Dense(1, sigmoid)`) est entraînée (`lr = 1×10⁻³`)
 - **Phase 2 (Fine-tuning)** : 30 dernières couches dégelées, taux d'apprentissage très faible (`lr = 1×10⁻⁵`)
@@ -90,7 +90,7 @@ Même approche en deux phases que pour la Partie 1 (CIFAR-10) :
 | Exactitude (test) | **86,05 %** |
 | AUC-ROC | **0,848** |
 
-C'est le **meilleur modèle** de la Partie 2, conformément aux résultats observés en Partie 1 : le Transfer Learning surpasse les algorithmes ML classiques dès lors qu'il dispose d'un volume de données suffisant.
+C'est le **meilleur modèle** de ce projet : le Transfer Learning surpasse les algorithmes ML classiques dès lors qu'il dispose d'un volume de données suffisant.
 
 ### 5.4 CNN — Transfer Learning MobileNetV2 (avec augmentation)
 
@@ -130,4 +130,4 @@ Ce résultat souligne que l'augmentation de données doit être choisie avec une
 
 ## 8. Conclusion
 
-Sur le dataset FracAtlas complet, le **CNN MobileNetV2 sans augmentation** obtient les meilleures performances (86,05 % d'exactitude, AUC-ROC de 0,848), devant le Random Forest (83,6 % / 0,730) et le SVM (74,3 % / 0,745). Ce résultat confirme, comme en Partie 1 sur CIFAR-10, la supériorité du Transfer Learning lorsque le volume de données est suffisant. Le résultat le plus instructif de cette partie est cependant la **dégradation des performances induite par une augmentation de données mal choisie** (-10,8 points d'exactitude) : l'augmentation de données est un outil puissant, mais son efficacité dépend entièrement de la pertinence des transformations choisies au regard du domaine d'application.
+Sur le dataset FracAtlas complet, le **CNN MobileNetV2 sans augmentation** obtient les meilleures performances (86,05 % d'exactitude, AUC-ROC de 0,848), devant le Random Forest (83,6 % / 0,730) et le SVM (74,3 % / 0,745). Ce résultat confirme la supériorité du Transfer Learning lorsque le volume de données est suffisant. Le résultat le plus instructif de ce projet est cependant la **dégradation des performances induite par une augmentation de données mal choisie** (-10,8 points d'exactitude) : l'augmentation de données est un outil puissant, mais son efficacité dépend entièrement de la pertinence des transformations choisies au regard du domaine d'application.

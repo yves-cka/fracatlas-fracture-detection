@@ -4,8 +4,6 @@ Projet réalisé dans le cadre du cours **IA02 – Intelligence Artificielle** (
 
 Classification binaire (fracturé / non fracturé) d'images de radiographies osseuses, avec gestion du **déséquilibre de classes** et étude de l'impact de l'**augmentation de données**.
 
-> Ce dépôt correspond à la **Partie 2** du projet. La Partie 1 (classification CIFAR-10 par ML classiques et CNN) se trouve dans un [dépôt séparé](https://github.com/<votre-pseudo>/cifar10-classification).
-
 ## Auteurs
 
 - Yves CHEKOUA
@@ -13,7 +11,7 @@ Classification binaire (fracturé / non fracturé) d'images de radiographies oss
 
 ## Le dataset
 
-[FracAtlas](https://www.kaggle.com/datasets/akshayramakrishnan28/fracture-classification-dataset) contient **4 083 images** de radiographies osseuses, dont **717 fracturées (17,6 %)** et **3 366 non fracturées** — un déséquilibre de classes de l'ordre de **1 pour 4,7**, représentatif des situations médicales réelles où les cas pathologiques sont minoritaires. L'intégralité du dataset est utilisée pour l'entraînement et l'évaluation des modèles.
+[FracAtlas](https://www.kaggle.com/datasets/akshayramakrishnan28/fracture-classification-dataset) contient **4 083 images** de radiographies osseuses, dont **717 fracturées (17,6 %)** et **3 366 non fracturées** — un déséquilibre de classes de l'ordre de **1 pour 4,7**, représentatif des situations médicales réelles où les cas pathologiques sont minoritaires.
 
 ![Répartition des classes](images/repartition_donnee.png)
 
@@ -67,7 +65,7 @@ pip install tensorflow scikit-learn numpy matplotlib seaborn opencv-python
 ## Principaux enseignements
 
 - Sur données déséquilibrées, l'**AUC-ROC** est plus informative que l'exactitude pour comparer des modèles
-- Le **Transfer Learning** (CNN MobileNetV2 sans augmentation) est le modèle le plus performant sur le dataset complet, conformément aux résultats observés en Partie 1 sur CIFAR-10
+- Le **Transfer Learning** (CNN MobileNetV2 sans augmentation) est le modèle le plus performant sur ce dataset
 - L'**augmentation de données n'est pas systématiquement bénéfique** : un `RandomFlip` vertical déforme la sémantique anatomique des radiographies et dégrade les performances du CNN — la technique d'augmentation doit être choisie en fonction du domaine
 - Le `class_weight='balanced'` (ML) et la pondération de classe manuelle (CNN) sont indispensables pour éviter qu'un modèle ne se contente de prédire systématiquement la classe majoritaire
 
